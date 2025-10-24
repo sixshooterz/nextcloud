@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Docker Image Update Checker
         id: baseupdatecheck
-        uses: lucacome/docker-image-update-checker@v1.1.0
+        uses: lucacome/docker-image-update-checker@v3.0.0
         with:
           base-image: nextcloud:latest
           image: sixshooterz/nextcloud # update for your image

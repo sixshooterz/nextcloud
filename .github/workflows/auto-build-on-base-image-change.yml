@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
       - name: Docker Image Update Checker
         id: baseupdatecheck
         uses: lucacome/docker-image-update-checker@v3.0.0
@@ -25,13 +25,13 @@ jobs:
       # (a cancellation is NOT the same and triggers a failure email)
       # see also https://github.com/actions/runner/issues/662
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
         if: steps.baseupdatecheck.outputs.needs-updating == 'true'
       - name: Build and push Docker images
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v6
         with:
           context: "${{ github.workspace }}"
           push: true
